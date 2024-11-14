@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": [
+        "GymlatorNoRcuerdoElNombre\\src",
+        "GymLogistics\\src"
+    ],
+    "java.project.referencedLibraries": [
+        "GymlatorNoRcuerdoElNombre\\lib\\mysql-connector-j-9.1.0.jar"
+    ]
+}
