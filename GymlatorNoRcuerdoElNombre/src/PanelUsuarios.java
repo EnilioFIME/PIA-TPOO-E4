@@ -8,7 +8,7 @@ public class PanelUsuarios extends JPanel {
         setLayout(new GridLayout(4, 4, 20, 20)); // 4 filas, 4 columnas, con espacio de 10 píxeles entre celdas
 
         // Crear los botones con los colores específicos
-        JButton botonVerde = new JButton("Verde");
+        JButton botonVerde = new JButton("Agregar Usuario");
         botonVerde.setBackground(Color.decode("#88C273"));
         botonVerde.setOpaque(true);
         botonVerde.setFocusPainted(false); // Evitar el borde al hacer clic
@@ -28,7 +28,7 @@ public class PanelUsuarios extends JPanel {
         botonRojo.setOpaque(true);
         botonRojo.setFocusPainted(false); // Evitar el borde al hacer clic
 
-        botonVerde.addActionListener(e -> mostrarFormulario());
+        botonVerde.addActionListener(e -> mostrarFormularioBotonVerde());
 
         // Añadir los botones al panel (se colocan en las primeras 4 celdas del grid)
         add(botonVerde);
@@ -42,10 +42,7 @@ public class PanelUsuarios extends JPanel {
         }
     }
 
-    private void mostrarFormulario() {
-
-        
-
+    private void mostrarFormularioBotonVerde() {
         // Crear un cuadro de diálogo (JDialog) para el formulario
         JDialog formulario = new JDialog((Frame) null, "Formulario para AGREGAR un Usuario", true);
         formulario.setLayout(new GridLayout(7, 1, 30, 30));
@@ -54,43 +51,57 @@ public class PanelUsuarios extends JPanel {
         formulario.getContentPane().setBackground(Color.decode("#88C273")); // Fondo verde suave
 
         // Crear un cuadro de texto para ingresar información
-        JTextField cuadroTexto1 = new JTextField(20);
-        JTextField cuadroTexto2 = new JTextField(20);
-        JTextField cuadroTexto3 = new JTextField(20);
-        JTextField cuadroTexto4 = new JTextField(20);
-        JTextField cuadroTexto5 = new JTextField(20);
+        JTextField cuadroTextoNombre = new JTextField(20);
+        JTextField cuadroTextoApellidoP = new JTextField(20);
+        JTextField cuadroTextoApellidoM = new JTextField(20);
+        JTextField cuadroTextoTelefono = new JTextField(20);
+        
 
         // Crear botones para aceptar y cancelar
         JButton botonAceptar = new JButton("Aceptar");
         JButton botonCancelar = new JButton("Cancelar");
-
+        
         // Acción para el botón Aceptar (puede realizar una operación, por ahora solo cierra el formulario)
         botonAceptar.addActionListener(e -> {
-            System.out.println("Información aceptada: " + cuadroTexto1.getText());
-            formulario.dispose(); // Cerrar el formulario
+            if (cuadroTextoNombre.getText().trim().isEmpty()) {
+                // Mostrar mensaje de error
+                JOptionPane.showMessageDialog(
+                    formulario,
+                    "El campo NOMBRE no puede estar vacío. Por favor, ingrese un nombre válido.",
+                    "Error de Validación",
+                    JOptionPane.ERROR_MESSAGE
+                );
+            } else {
+                // Si el nombre es válido, cerrar el formulario
+                System.out.println("Información aceptada: " + cuadroTextoNombre.getText());
+                formulario.dispose();
+            }
         });
 
         // Acción para el botón Cancelar (limpiar el texto y cerrar el formulario)
         botonCancelar.addActionListener(e -> {
-            cuadroTexto1.setText(""); // Limpiar el texto
+            cuadroTextoNombre.setText(""); // Limpiar el texto
             formulario.dispose(); // Cerrar el formulario
         });
 
         // Añadir el cuadro de texto y los botones al formulario
-        formulario.add(new JLabel("Ingresa texto 1:"));
-        formulario.add(cuadroTexto1);
-        formulario.add(new JLabel("Ingresa texto 2:"));
-        formulario.add(cuadroTexto2);
-        formulario.add(new JLabel("Ingresa texto 3:"));
-        formulario.add(cuadroTexto3);
-        formulario.add(new JLabel("Ingresa texto 4:"));
-        formulario.add(cuadroTexto4);
-        formulario.add(new JLabel("Ingresa texto 5:"));
-        formulario.add(cuadroTexto5);
+        formulario.add(new JLabel("Ingresa el NOMBRE del nuevo Usuario:"));
+        formulario.add(cuadroTextoNombre);
+        formulario.add(new JLabel("Ingresa el APELLIDO PATERNO del nuevo Usuario:"));
+        formulario.add(cuadroTextoApellidoP);
+        formulario.add(new JLabel("Ingresa el APELLIDO MATERNO del nuevo Usuario:"));
+        formulario.add(cuadroTextoApellidoM);
+        formulario.add(new JLabel("Ingresa el TELEFONO del nuevo Usuario:"));
+        formulario.add(cuadroTextoTelefono);
+        
         formulario.add(botonAceptar);
         formulario.add(botonCancelar);
 
         // Hacer visible el formulario
         formulario.setVisible(true);
+    }
+
+    private void mostrarFormularioBotonAmarillo() {
+
     }
 }

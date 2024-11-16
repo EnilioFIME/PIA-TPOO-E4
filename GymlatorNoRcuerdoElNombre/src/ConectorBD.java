@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class ConectorBD {
     // Configura la URL de tu base de datos
-    private static final String URL = "jdbc:mysql://localhost:3306/gymlogisticbd";  // Cambia por tu base de datos
+    private static final String URL = "jdbc:mysql://localhost:3306/gymlogisticbd_new";  // Cambia por tu base de datos
     private static final String USER = "root";  // Usuario de la base de datos
     private static final String PASSWORD = "";  // Contraseña de la base de datos
 
